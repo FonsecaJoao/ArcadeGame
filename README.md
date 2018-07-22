@@ -14,7 +14,7 @@ It's part of the Udacity and Google's Schoolarship Front-End Web Developer.
 
 ### Screenshot
 
-![Screenshot](images/screenshot.png "Screenshot of the game")
+![Screenshot](images/screenshoot.png "Screenshot of the game")
 
 ### Challenge
 
