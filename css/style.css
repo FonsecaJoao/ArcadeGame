@@ -1,0 +1,31 @@
+body {
+    text-align: center;
+    background-color: black;
+}
+
+h1 {
+    font-family: 'Merienda', cursive;
+    color: white;
+}
+
+/*
+ *Styles for the Modal
+ */
+
+.modal-title {
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.modal-footer {
+  justify-content: center;
+}
+
+.btn {
+  background-color: #2e3d49;
+  color: white;
+}
+
+.modalBody {
+  text-align: center;
+}
