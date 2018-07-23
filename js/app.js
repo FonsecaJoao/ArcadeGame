@@ -1,19 +1,26 @@
-// Enemies our player must avoid.
-class Enemy {
-    constructor(x, y, speed) {
+'use strict';
+
+class Character {
+    constructor(x, y, sprite, speed) {
         this.x = x;
         this.y = y;
-        this.speed = speed;
-
         // The image/sprite for our enemies, this uses
         // a helper we've provided to easily load images.
-        this.sprite = 'images/enemy-bug.png';
+        this.sprite = sprite;
+        this.speed = speed;
     }
 
     // Draws the enemy on the screen.
     render() {
-        return ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     }
+}
+
+// Enemies our player must avoid.
+class Enemy extends Character {
+    constructor(x, y, sprite, speed) {
+        super(x, y, sprite, speed);
+     }
 
     // Updates the enemy's position.
     // Parameter: dt, a time delta between ticks.
@@ -36,29 +43,20 @@ class Enemy {
             60 + player.y > this.y) {
             resetPlayer();
         }
-        return this.dt;
+
     }
 }
 
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
-class Player {
-    constructor(x, y) {
-        this.x = x;
-        this.y = y;
-        this.player = 'images/char-boy.png';
+class Player extends Character {
+    constructor(x, y, sprite) {
+        super(x, y, sprite);
     }
 
     // Updates the Player's position.
-    update(dt) {
-        return this.dt;
-    }
-
-    // Draws the Player character image.
-    render() {
-        return ctx.drawImage(Resources.get(this.player), this.x, this.y);
-    }
+    update(dt) {}
 
     // Handles how Player moves in canvas, prevents it from going off screen
     // and if Player reaches the top of the canvas it wins the game and a modal
@@ -77,10 +75,7 @@ class Player {
             this.y += 83;
         }
         if (this.y < 0) {
-            setTimeout(function() {
-                player.x = 202;
-                player.y = 405;
-            }, 300);
+            setTimeout( () => { resetPlayer(); }, 300);
             $('#myModal').modal('show');
         }
         return this.keyUp;
@@ -95,18 +90,18 @@ function resetPlayer() {
 
 // Instantiate objects.
 // Places all enemy objects in an array called allEnemies.
-const allEnemies = [];
+let allEnemies = [];
 
 // Create Enemies.
 const enemyLocation = [65, 150, 230];
 
 enemyLocation.forEach(function(positionY) {
-    const enemy = new Enemy(0, positionY, 500000);
+    let enemy = new Enemy(0, positionY, 'images/enemy-bug.png', 500000);
     allEnemies.push(enemy);
 });
 
 // Places the player object in a variable called player.
-const player = new Player(202, 405);
+const player = new Player(202, 405, 'images/char-boy.png');
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method.
