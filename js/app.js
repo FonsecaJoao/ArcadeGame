@@ -34,8 +34,7 @@ class Enemy {
             player.x + 80 > this.x &&
             player.y < this.y + 60 &&
             60 + player.y > this.y) {
-            player.x = 202;
-            player.y = 405;
+            resetPlayer();
         }
         return this.dt;
     }
@@ -86,6 +85,12 @@ class Player {
         }
         return this.keyUp;
     }
+}
+
+// Resets Player position
+function resetPlayer() {
+    player.x = 202;
+    player.y = 405;
 }
 
 // Instantiate objects.
